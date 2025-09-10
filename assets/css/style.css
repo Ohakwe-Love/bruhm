@@ -10,6 +10,7 @@
     --white: #ffffff;
 
     --border-radius: 8px;
+    --transition: 0.5s ease;
     --box-shadow: 0 10px 40px rgba(30, 51, 98, 0.15);
 
     --heading-font-family: "Work Sans", Sans-Serif;
@@ -482,6 +483,9 @@ a.site_logo img {
     gap: 15px;
     align-items: center;
     border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
 }
 
 .widget-icon {
@@ -492,7 +496,7 @@ a.site_logo img {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.5s ease;
+    transition: var(--transition);
 }
 
 .widget-icon svg {
