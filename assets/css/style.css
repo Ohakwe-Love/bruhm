@@ -478,12 +478,11 @@ a.site_logo img {
 
 .widget-card {
     box-shadow: var(--box-shadow);
-    padding: 10px;
+    padding: 5px 10px;
     display: flex;
     gap: 15px;
     align-items: center;
     border-radius: 30px;
-    cursor: pointer;
     transition: var(--transition);
     text-decoration: none;
 }
@@ -518,7 +517,7 @@ a.site_logo img {
 }
 
 .widget-card h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-transform: capitalize;
     color: var(--text-color);
 }
