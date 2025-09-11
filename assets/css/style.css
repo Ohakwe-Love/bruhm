@@ -521,3 +521,28 @@ a.site_logo img {
     text-transform: capitalize;
     color: var(--text-color);
 }
+
+@media (max-width: 900px) {
+    .widget-row {
+        flex-wrap: wrap;
+        justify-content: left;
+        gap: 10px;
+    }   
+}
+
+@media (max-width: 600px) {
+    .widget-row {
+        justify-content: space-between;
+        gap: 10px 0;
+    }   
+
+    .widget-card {
+        width: 49%;
+    }
+}
+
+@media (max-width: 380px) {
+    .widget-card {
+        width: 100%;
+    }
+}
