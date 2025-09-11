@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Slider</title>
+    <style>
+        :root {
+            --primary-color: #1e3362;
+            --secondary-color: #2a4a82;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --muted-color: #666;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --transition: 0.5s ease;
+            --box-shadow: 0 10px 40px rgba(30, 51, 98, 0.15);
+            --heading-font-family: "Work Sans", Sans-Serif;
+            --font-family: "manrope", Sans-Serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap');
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            background: var(--white);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform var(--transition);
+            height: 400px;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-image {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 51, 98, 0.1) 0%, rgba(42, 74, 130, 0.05) 100%);
+            z-index: 1;
+        }
+
+        .slide-content {
+            flex: 0 0 400px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: var(--white);
+        }
+
+        .hotel-name {
+            font-family: var(--heading-font-family);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            width: 16px;
+            height: 16px;
+            background: #ffd700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .rating-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--muted-color);
+        }
+
+        .rating-number {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .price-tier {
+            padding: 4px 8px;
+            background: var(--background-color);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .location {
+            color: var(--muted-color);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .location-icon {
+            width: 14px;
+            height: 14px;
+            background: var(--muted-color);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .location-icon::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .heart-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .heart-icon:hover {
+            background: var(--white);
+            transform: scale(1.1);
+        }
+
+        .heart {
+            width: 18px;
+            height: 18px;
+            background: #ff6b6b;
+            position: relative;
+            transform: rotate(-45deg);
+            border-radius: 0 0 0 2px;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -9px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 9px;
+            top: 0;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .nav-dot.active {
+            background: var(--white);
+            transform: scale(1.2);
+            border-color: var(--primary-color);
+        }
+
+        .nav-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-arrows:hover {
+            background: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-prev {
+            left: 20px;
+        }
+
+        .nav-next {
+            right: 20px;
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .arrow-left {
+            border-width: 8px 12px 8px 0;
+            border-color: transparent var(--primary-color) transparent transparent;
+        }
+
+        .arrow-right {
+            border-width: 8px 0 8px 12px;
+            border-color: transparent transparent transparent var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                flex-direction: column;
+                height: auto;
+                min-height: 500px;
+            }
+
+            .slide-image {
+                height: 250px;
+                flex: none;
+            }
+
+            .slide-content {
+                flex: none;
+                padding: 20px;
+            }
+
+            .hotel-name {
+                font-size: 1.5rem;
+            }
+
+            .nav-arrows {
+                display: none;
+            }
+        }
+
+        .slide-enter {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+
+        .slide-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all var(--transition);
+        }
+
+        .slide-exit {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-exit-active {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all var(--transition);
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+            <!-- Slide 1: Berlin Business Hotel -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23e8dcc0%22/><rect x=%2250%22 y=%2250%22 width=%22300%22 height=%22200%22 rx=%2210%22 fill=%22%23fff%22/><rect x=%2270%22 y=%2280%22 width=%22120%22 height=%2280%22 fill=%22%23f0f0f0%22/><rect x=%22210%22 y=%2280%22 width=%22120%22 height=%2280%22 fill=%22%23ff6b35%22/><text x=%22200%22 y=%22220%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2214%22>Berlin Business Hotel</text></svg>')">
+                    <div class="heart-icon">
+                        <div class="heart"></div>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="hotel-name">Berlin Business Hotel</h2>
+                    <div class="rating-section">
+                        <div class="stars">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                        <div class="rating-info">
+                            <span class="rating-number">5</span>
+                            <span>(48)</span>
+                            <div class="price-tier">$$</div>
+                        </div>
+                    </div>
+                    <div class="location">
+                        <div class="location-icon"></div>
+                        1.4 km from center
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Big Tree Cottage -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f5f5f5%22/><circle cx=%22200%22 cy=%22150%22 r=%22100%22 fill=%22%23e0e0e0%22/><rect x=%22150%22 y=%22100%22 width=%22100%22 height=%22100%22 fill=%22%23fff%22/><rect x=%22170%22 y=%22120%22 width=%2260%22 height=%2260%22 fill=%22%23ffa726%22/><text x=%22200%22 y=%22220%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2214%22>Big Tree Cottage</text></svg>')">
+                    <div class="heart-icon">
+                        <div class="heart"></div>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="hotel-name">Big Tree Cottage</h2>
+                    <div class="rating-section">
+                        <div class="stars">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star" style="opacity: 0.8;"></div>
+                        </div>
+                        <div class="rating-info">
+                            <span class="rating-number">4.8</span>
+                            <span>(24)</span>
+                            <div class="price-tier">$$$</div>
+                        </div>
+                    </div>
+                    <div class="location">
+                        <div class="location-icon"></div>
+                        0.5 km from center
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Grand Resort & Spa -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%23f8f8f8%22/><rect x=%2250%22 y=%2250%22 width=%22300%22 height=%22200%22 rx=%2215%22 fill=%22%23fff%22/><rect x=%2280%22 y=%2280%22 width=%22240%22 height=%22140%22 fill=%22%23f0f0f0%22/><rect x=%22120%22 y=%22120%22 width=%22160%22 height=%2260%22 fill=%22%23e0e0e0%22/><text x=%22200%22 y=%22270%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2214%22>Grand Resort &amp; Spa</text></svg>')">
+                    <div class="heart-icon">
+                        <div class="heart"></div>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="hotel-name">Grand Resort & Spa</h2>
+                    <div class="rating-section">
+                        <div class="stars">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star" style="opacity: 0.9;"></div>
+                        </div>
+                        <div class="rating-info">
+                            <span class="rating-number">4.9</span>
+                            <span>(43)</span>
+                            <div class="price-tier">$$$</div>
+                        </div>
+                    </div>
+                    <div class="location">
+                        <div class="location-icon"></div>
+                        1.8 km from center
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="navigation">
+            <div class="nav-dot active" data-slide="0"></div>
+            <div class="nav-dot" data-slide="1"></div>
+            <div class="nav-dot" data-slide="2"></div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <div class="nav-arrows nav-prev" id="prevBtn">
+            <div class="arrow arrow-left"></div>
+        </div>
+        <div class="nav-arrows nav-next" id="nextBtn">
+            <div class="arrow arrow-right"></div>
+        </div>
+    </div>
+
+    <script>
+        class HotelSlider {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 3;
+                this.sliderWrapper = document.getElementById('sliderWrapper');
+                this.navDots = document.querySelectorAll('.nav-dot');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.startAutoSlide();
+            }
+
+            bindEvents() {
+                // Navigation dots
+                this.navDots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                });
+
+                // Arrow navigation
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                });
+
+                // Pause on hover
+                this.sliderWrapper.addEventListener('mouseenter', () => this.pauseAutoSlide());
+                this.sliderWrapper.addEventListener('mouseleave', () => this.startAutoSlide());
+
+                // Touch/Swipe support
+                let startX = 0;
+                let endX = 0;
+                
+                this.sliderWrapper.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+
+                this.sliderWrapper.addEventListener('touchend', (e) => {
+                    endX = e.changedTouches[0].clientX;
+                    this.handleSwipe(startX, endX);
+                });
+            }
+
+            handleSwipe(startX, endX) {
+                const threshold = 50;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        this.nextSlide();
+                    } else {
+                        this.prevSlide();
+                    }
+                }
+            }
+
+            goToSlide(slideIndex) {
+                this.currentSlide = slideIndex;
+                this.updateSlider();
+                this.updateNavDots();
+            }
+
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateSlider();
+                this.updateNavDots();
+            }
+
+            prevSlide() {
+                this.currentSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
+                this.updateSlider();
+                this.updateNavDots();
+            }
+
+            updateSlider() {
+                const translateX = -this.currentSlide * 100;
+                this.sliderWrapper.style.transform = `translateX(${translateX}%)`;
+            }
+
+            updateNavDots() {
+                this.navDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+
+            startAutoSlide() {
+                this.autoSlideInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 5000);
+            }
+
+            pauseAutoSlide() {
+                clearInterval(this.autoSlideInterval);
+            }
+        }
+
+        // Initialize slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new HotelSlider();
+        });
+    </script>
+</body>
+</html>
