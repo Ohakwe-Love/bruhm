@@ -744,3 +744,44 @@ a.site_logo img {
     flex-direction: row-reverse;
     border: none;
 }
+
+@media (max-width: 900px) {
+    .info-section .container {
+        padding: 0 30px;
+    }
+
+    .info-content {
+        justify-content: space-between;
+    }
+
+    .info-col {
+        width: 48%;
+    }
+
+    .info-col.info-img {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .info-content .info-img img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-content {
+        flex-direction: column;
+    }
+
+    .info-col {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .info-content:nth-child(2) {
+        flex-direction: column;
+    }
+}
