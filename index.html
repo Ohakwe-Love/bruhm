@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>Brühm</title>
 
     <!-- custom css -->
@@ -11,6 +12,9 @@
 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -390,60 +394,76 @@
             <div class="container">
                 <h2 class="section-heading">What Our Customers Say</h2>
 
-                <div class="testimonial-row" id="testimonialSliderTrack">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"I recently purchased a Bruhm refrigerator and I am extremely
-                            satisfied with its performance. It keeps my food fresh and has ample storage space. The
-                            sleek design also adds a modern touch to my kitchen."</p>
-                        <div class="testimonial-profile">
-                            <img src="assets/images/user/1.webp" alt="Customer 1" class="profile-img">
-                            <div class="profile-info">
-                                <h3 class="profile-name">Jane Doe</h3>
-                                <p class="profile-role">Homeowner</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">The Bruhm air conditioner I bought last summer has been a
-                            game-changer. It cools my entire living room quickly and operates quietly. I appreciate the energy efficiency features that help reduce my electricity bills.</p>
-                        <div class="testimonial-profile">
-                            <img src="assets/images/user/2.webp" alt="Customer 2" class="profile-img">
-                            <div class="profile-info">
-                                <h3 class="profile-name">John Smith</h3>
-                                <p class="profile-role">Apartment Resident</p>
-                            </div>
-                        </div>
-                    </div>
-
-                        <!-- <div class="testimonial-card">
-                            <p class="testimonial-text">"I am impressed with the quality of the Bruhm washing machine I
-                                purchased. It has multiple wash settings that cater to different fabric types, and it gets
-                                my clothes thoroughly clean every time. The customer service was also excellent."</p>
-                            <div class="testimonial-profile">
-                                <img src="assets/images/testimonial/3.jpg" alt="Customer 3" class="profile-img">
-                                <div class="profile-info">
-                                    <h3 class="profile-name">Emily Johnson</h3>
-                                    <p class="profile-role">Family of Four</p>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p class="testimonial-text">I recently purchased a Bruhm refrigerator and I am extremely
+                                    satisfied with its performance. It keeps my food fresh and has ample storage space.
+                                    The
+                                    sleek design also adds a modern touch to my kitchen.</p>
+                                <div class="testimonial-profile">
+                                    <img src="assets/images/user/1.webp" alt="Customer 1" class="profile-img">
+                                    <div class="profile-info">
+                                        <h3 class="profile-name">Jane Doe</h3>
+                                        <p class="profile-role">Homeowner</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">"I recently purchased a Bruhm refrigerator and I am extremely
-                                satisfied with its performance. It keeps my food fresh and has ample storage space. The
-                                sleek design also adds a modern touch to my kitchen."</p>
-                            <div class="testimonial-profile">
-                                <img src="assets/images/testimonial/1.jpg" alt="Customer 1" class="profile-img">
-                                <div class="profile-info">
-                                    <h3 class="profile-name">Jane Doe</h3>
-                                    <p class="profile-role">Homeowner</p>
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p class="testimonial-text">The Bruhm air conditioner I bought last summer has been a
+                                    game-changer. It cools my entire living room quickly and operates quietly. I
+                                    appreciate the energy efficiency features that help reduce my electricity bills.</p>
+                                <div class="testimonial-profile">
+                                    <img src="assets/images/user/2.webp" alt="Customer 2" class="profile-img">
+                                    <div class="profile-info">
+                                        <h3 class="profile-name">John Smith</h3>
+                                        <p class="profile-role">Apartment Resident</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p class="testimonial-text">I recently purchased a Bruhm refrigerator and I am extremely
+                                    satisfied with its performance. It keeps my food fresh and has ample storage space.
+                                    The
+                                    sleek design also adds a modern touch to my kitchen.</p>
+                                <div class="testimonial-profile">
+                                    <img src="assets/images/user/1.webp" alt="Customer 1" class="profile-img">
+                                    <div class="profile-info">
+                                        <h3 class="profile-name">Jane Doe</h3>
+                                        <p class="profile-role">Homeowner</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <p class="testimonial-text">The Bruhm air conditioner I bought last summer has been a
+                                    game-changer. It cools my entire living room quickly and operates quietly. I
+                                    appreciate the energy efficiency features that help reduce my electricity bills.</p>
+                                <div class="testimonial-profile">
+                                    <img src="assets/images/user/2.webp" alt="Customer 2" class="profile-img">
+                                    <div class="profile-info">
+                                        <h3 class="profile-name">John Smith</h3>
+                                        <p class="profile-role">Apartment Resident</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+        <!-- testimonial -->
+
+
 
         <!-- map-container -->
         <section class="map-wrapper">
@@ -537,7 +557,27 @@
     <!-- footer end -->
 
 
+    <!-- custom js -->
     <script src="assets/js/script.js"></script>
+
+    <!-- swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: { slidesPerView: 1 }, 
+                768: { slidesPerView: 2 } 
+            }
+        });
+    </script>
 </body>
 
 </html>
