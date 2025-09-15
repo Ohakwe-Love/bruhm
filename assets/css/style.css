@@ -18,7 +18,9 @@
     --font-family: "manrope", Sans-Serif;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -88,7 +90,8 @@ button.primary_btn {
     cursor: pointer;
 }
 
-section, footer {
+section,
+footer {
     width: 100%;
     padding: 50px 0;
 }
@@ -215,6 +218,7 @@ a.site_logo img {
 }
 
 .nav-item {
+    display: block;
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
@@ -240,6 +244,65 @@ a.site_logo img {
 
 .nav-item:hover::after {
     width: 100%;
+}
+
+.dropdown-container{
+    cursor: pointer;
+}
+
+/* .dropdown-container::after  .dropdown {
+    display: none;
+} */
+
+.dropdown {
+    width: 230px;
+    padding: 10px;
+    position: absolute;
+    top: 130%;
+    transform: translate(-30%, 0);
+    list-style: none;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    visibility: hidden;
+    opacity: 1;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown::after {
+    content: '';
+    border-width: 7px;
+    border-style: solid;
+    border-color:  transparent transparent white transparent;
+    position: absolute;
+    bottom: 100%;
+    left: 40%;
+}
+
+/* .dropdown.inactive {
+    visibility: hidden;
+    opacity: 0;
+} */
+
+.dropdown.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown ul {
+    list-style-type: none;
+}
+
+.dropdown  a {
+    color: var(--text-color);
+    display: block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.dropdown a:hover {
+    background: var(--primary-color);
+    color: var(--white);
 }
 
 
@@ -802,16 +865,78 @@ a.site_logo img {
     }
 }
 
+/* new-arrivals */
+.new-arrivals {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/new_arrivals/1.jpg");
+    background-position: center;
+    background-size: cover;
+    color: var(--white);
+}
+
+.new-arrivals .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+}
+
+.new-arrivals-content {
+    width: 50%;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new-arrivals-content h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.new-arrivals-content p {
+    line-height: 1.8;
+    font-size: 1.2rem;
+}
+
+.new-arrivals-content p::before {
+    content: "Discover the latest additions to our collection of home appliances. Stay ahead with the newest innovations in home comfortand convenience.";
+}
+
+@media (max-width: 900px) {
+    .new-arrivals-content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px) {
+    .new-arrivals-content {
+        width: 100%;
+    }
+
+    .new-arrivals-content h2 {
+        font-size: 2rem;
+    }
+
+    .new-arrivals-content p::before {
+        content: "Stay ahead with the newest innovations in home comfortand convenience.";
+    }
+}
+
+/* new-arrivals end */
+
+
 /* testimonials */
 .swiper {
-  padding: 60px 0;
+    padding: 60px 0;
 }
 
 .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    cursor: grab;
 }
 
 .testimonial-card {
@@ -830,7 +955,7 @@ a.site_logo img {
     font-style: italic;
     color: var(--primary-color);
     position: absolute;
-    top: -15px ;
+    top: -15px;
     left: 0px;
     display: flex;
     justify-content: center;
@@ -868,6 +993,7 @@ a.site_logo img {
         width: 100%;
     }
 }
+
 /* testimonials end */
 
 /* map-wrapper */
@@ -927,7 +1053,7 @@ footer a {
     font-size: 13px;
 }
 
-.footer-col ul  {
+.footer-col ul {
     display: grid;
     gap: 8px;
     grid-template-columns: 1fr 1fr;
@@ -989,4 +1115,5 @@ footer a {
     color: var(--white);
     transform: translateY(-5px);
 }
+
 /* footer end */

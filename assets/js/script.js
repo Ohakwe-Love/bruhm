@@ -140,3 +140,28 @@ class ProductSlide {
 document.addEventListener('DOMContentLoaded', () => {
     new ProductSlide();
 });
+
+// const dropdownContainer = document.querySelector(".dropdown-container");
+// const dropdown = document.querySelector(".dropdown");
+
+// dropdownContainer.addEventListener("click", ()=> {
+//     if (dropdown.classList.contains("inactive")) {
+//         dropdown.classList.add("active")
+//     } else if(dropdown.classList.contains("active")){
+//         dropdown.classList.remove("active")
+//     }
+// })
+
+const dropdownContainer = document.querySelector(".dropdown-container");
+const dropdown = document.querySelector(".dropdown");
+
+// Toggle dropdown on click
+dropdownContainer.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", () => {
+    dropdown.classList.remove("active");
+});
